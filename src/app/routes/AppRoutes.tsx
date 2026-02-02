@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import DragonCreate from "../../presentation/pages/DragonCreate/DragonCreate";
 import DragonDetail from "../../presentation/pages/DragonDetail/DragonDetail";
-import DragonList from "../../presentation/pages/DragonList/DragonList";
+import { DragonListPage } from "../../presentation/pages/DragonListPage/DragonListPage";
 import Login from "../../presentation/pages/Login/Login";
 import { NotFound } from "../../presentation/pages/NotFound/NotFound";
 
@@ -11,10 +11,10 @@ export const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         {/* Rota de Login */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
 
         {/* Listagem de Dragões */}
-        <Route path="/dragons" element={<DragonList />} />
+        <Route path="/dragons" element={<DragonListPage />} />
 
         {/* Criação de Dragão */}
         <Route path="/create-dragon" element={<DragonCreate />} />
