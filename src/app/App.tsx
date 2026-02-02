@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import "./App.scss";
+import { AppRoutes } from "./routes/AppRoutes";
+
+import "@/app/App.scss";
+
+const queryClient = new QueryClient();
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>Iniciando a estrutura da aplicação :D</h1>
-      <span>Vamos entregar valor!</span>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <AppRoutes />
+    </QueryClientProvider>
   );
 };
 
