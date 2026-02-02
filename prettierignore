@@ -1,0 +1,37 @@
+# Build outputs
+dist
+build
+coverage
+*.local
+
+# Dependencies
+node_modules
+
+# Package files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Type definitions
+*.d.ts
+
+# Generated files
+.vite
+.turbo
+
+# Logs
+*.log
+
+# Environment
+.env*
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+CHANGELOG.md
