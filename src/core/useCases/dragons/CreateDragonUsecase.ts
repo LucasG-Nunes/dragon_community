@@ -1,15 +1,14 @@
 import type { Dragon } from "../../entities/Dragon";
-import type { IGetDragonsUseCase } from "../../ports/in/IGetDragonUseCase";
 import type { IDragonService } from "../../ports/out/IDragonService";
 
-export class GetDragonsUseCase implements IGetDragonsUseCase {
+export class CreateDragonUseCase {
   private dragonService: IDragonService;
 
   constructor(dragonService: IDragonService) {
     this.dragonService = dragonService;
   }
 
-  async execute(): Promise<Dragon[]> {
-    return await this.dragonService.fetchAll();
+  async execute(dragonData: Partial<Dragon>): Promise<void> {
+    await this.dragonService.create(dragonData);
   }
 }
