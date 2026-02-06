@@ -1,0 +1,90 @@
+/* Variables Scope */
+$ritual-gold: #d4af37;
+$ritual-fire: #f6ad55;
+$ritual-dark: #3d2b1f;
+$ritual-text: #744210;
+$loader-size: 100px;
+$glow-dragon: 0 0 15px rgba(212, 175, 55, 0.5);
+
+.container {
+  --loader-gold: #{$ritual-gold};
+  --loader-fire: #{$ritual-fire};
+  --loader-text-color: #{$ritual-text};
+  --dragon-glow: #{$glow-dragon};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  width: 100%;
+  gap: 2rem;
+}
+
+.ritualWrapper {
+  position: relative;
+  width: $loader-size;
+  height: $loader-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dragonIcon {
+  font-size: 3.5rem;
+  z-index: 2;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(var(--dragon-glow));
+}
+
+.fireCircle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-top: 4px solid var(--loader-fire); 
+  border-right: 4px solid var(--loader-gold);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border: 2px solid $ritual-dark;
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+}
+
+.loadingText {
+  font-family: 'Cinzel', serif;
+  color: var(--loader-text-color);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  
+  span {
+    display: inline-block;
+    animation: blink 1.4s infinite;
+    
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
