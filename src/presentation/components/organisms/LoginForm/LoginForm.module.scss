@@ -1,26 +1,28 @@
+/* Variables Scope */
+$login-card-bg: white;
+$login-text-primary: #2d3748;
+$login-text-secondary: #718096;
+$login-brand-color: #764ba2;
+$login-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+$login-error-bg: rgba(216, 67, 21, 0.15);
+$login-error-border: #d84315;
+
 .card {
-  background: white;
+  --bg: #{$login-card-bg};
+  --shadow: #{$login-shadow};
+
+  background: var(--bg);
   padding: 2.5rem;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
   width: 100%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 
-  h2 {
-    margin: 0;
-    color: #2d3748;
-    text-align: center;
-  }
-
-  p {
-    margin: 0;
-    color: #718096;
-    text-align: center;
-    font-size: 0.9rem;
-  }
+  h2 { margin: 0; color: $login-text-primary; text-align: center; }
+  p { margin: 0; color: $login-text-secondary; text-align: center; font-size: 0.9rem; }
 }
 
 .field {
@@ -28,11 +30,7 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #4a5568;
-  }
+  label { font-size: 0.85rem; font-weight: 600; color: #4a5568; }
 
   input {
     padding: 0.8rem;
@@ -41,17 +39,14 @@
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s;
-
-    &:focus {
-      border-color: #764ba2;
-    }
+    &:focus { border-color: $login-brand-color; }
   }
 }
 
 .loginBtn {
   margin-top: 1rem;
   padding: 1rem;
-  background: #764ba2;
+  background: $login-brand-color;
   color: white;
   border: none;
   border-radius: 8px;
@@ -60,20 +55,13 @@
   cursor: pointer;
   transition: filter 0.2s;
 
-  &:hover {
-    filter: brightness(1.1);
-  }
-
-  &:disabled {
-    background: #a0aec0;
-    cursor: not-allowed;
-  }
+  &:hover { filter: brightness(1.1); }
+  &:disabled { background: #a0aec0; cursor: not-allowed; }
 }
 
-
 .authError {
-  background-color: rgba(216, 67, 21, 0.15);
-  border: 1px solid #d84315;
+  background-color: $login-error-bg;
+  border: 1px solid $login-error-border;
   color: #ff8a65;
   padding: 0.75rem;
   border-radius: 8px;

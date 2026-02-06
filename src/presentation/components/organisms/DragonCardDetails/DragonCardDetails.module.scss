@@ -1,16 +1,31 @@
+/* Variables Scope */
+$card-bg: #fdf5e6;
+$card-border-outer: #3d2b1f;
+$card-border-inner: #d4af37;
+$text-name: #2b1b12;
+$text-rarity: #8e5a2d;
+$visual-bg: #ffffff;
+$badge-bg: rgba(212, 175, 55, 0.1);
+$badge-type-bg: #4a2c11;
+$shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
+
 .card {
+  --bg: #{$card-bg};
+  --border-color: #{$card-border-outer};
+  --shadow: #{$shadow-card};
+
   max-width: 450px;
   margin: 2rem auto;
-  background: #fdf5e6;
+  background: var(--bg);
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border: 2px solid #3d2b1f;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--border-color);
   position: relative;
 }
 
 .frame {
-  border: 2px solid #d4af37;
+  border: 2px solid $card-border-inner;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -23,7 +38,7 @@
   padding-bottom: 1rem;
 
   .rarity {
-    color: #8e5a2d;
+    color: $text-rarity;
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -31,7 +46,7 @@
 
   .name {
     margin: 0.5rem 0 0;
-    color: #2b1b12;
+    color: $text-name;
     font-family: 'Cinzel', serif;
     font-size: 2rem;
     text-shadow: 1px 1px 0px #fff;
@@ -39,7 +54,7 @@
 }
 
 .visualSection {
-  background: #fff;
+  background: $visual-bg;
   height: 200px;
   display: flex;
   align-items: center;
@@ -59,17 +74,17 @@
   gap: 1rem;
 
   .badgeRow {
+    background: $badge-bg;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
 
     .label { color: #4a3728; font-weight: bold; }
     .typeBadge {
-      background: #4a2c11;
-      color: #fdf5e6;
+      background: $badge-type-bg;
+      color: $card-bg;
       padding: 0.2rem 0.8rem;
       border-radius: 20px;
       font-size: 0.85rem;

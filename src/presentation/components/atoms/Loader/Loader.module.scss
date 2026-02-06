@@ -1,4 +1,17 @@
+/* Variables Scope */
+$ritual-gold: #d4af37;
+$ritual-fire: #f6ad55;
+$ritual-dark: #3d2b1f;
+$ritual-text: #744210;
+$loader-size: 100px;
+$glow-dragon: 0 0 15px rgba(212, 175, 55, 0.5);
+
 .container {
+  --loader-gold: #{$ritual-gold};
+  --loader-fire: #{$ritual-fire};
+  --loader-text-color: #{$ritual-text};
+  --dragon-glow: #{$glow-dragon};
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,8 +23,8 @@
 
 .ritualWrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: $loader-size;
+  height: $loader-size;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +34,7 @@
   font-size: 3.5rem;
   z-index: 2;
   animation: float 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(var(--dragon-glow));
 }
 
 .fireCircle {
@@ -29,8 +42,8 @@
   width: 100%;
   height: 100%;
   border: 4px solid transparent;
-  border-top: 4px solid #f6ad55; 
-  border-right: 4px solid #d4af37;
+  border-top: 4px solid var(--loader-fire); 
+  border-right: 4px solid var(--loader-gold);
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
   
@@ -38,7 +51,7 @@
     content: '';
     position: absolute;
     inset: -12px;
-    border: 2px solid #3d2b1f;
+    border: 2px solid $ritual-dark;
     border-radius: 50%;
     opacity: 0.4;
   }
@@ -46,7 +59,7 @@
 
 .loadingText {
   font-family: 'Cinzel', serif;
-  color: #744210;
+  color: var(--loader-text-color);
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;

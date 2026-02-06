@@ -1,13 +1,24 @@
+/* === LAYOUT TOKENS === */
+$sidebar-width: 260px;
+$header-height: 80px;
+$wood-gradient-sidebar: linear-gradient(180deg, #3e2723 0%, #5d4037 100%);
+$content-bg: #f8fafc;
+$border-light: #edf2f7;
+
 .gridContainer {
+  --sidebar-w: #{$sidebar-width};
+  --header-h: #{$header-height};
+  --bg-main: #{$content-bg};
+  
   display: grid;
   grid-template-areas:
     "sidebar header"
     "sidebar content";
-  grid-template-columns: 260px 1fr;
-  grid-template-rows: 80px 1fr;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-rows: var(--header-h) 1fr;
   height: 100vh;
   width: 100vw;
-  background-color: #f8fafc;
+  background-color: var(--bg-main);
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -20,23 +31,21 @@
 
 .sidebar {
   grid-area: sidebar;
-  background: linear-gradient(180deg, #3e2723 0%, #5d4037 100%);
+  background: $wood-gradient-sidebar;
   color: white;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
   transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 260px;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
     transform: translateX(-100%);
     
-    .menuOpen & {
+    :global(.menuOpen) & {
       transform: translateX(0);
     }
   }
@@ -49,7 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #edf2f7;
+  border-bottom: 1px solid $border-light;
   z-index: 9;
 
   @media (max-width: 768px) {
@@ -61,16 +70,18 @@
   grid-area: content;
   padding: 1.5rem;
   overflow-y: auto;
-  background-color: #f8fafc;
+  background-color: var(--bg-main);
 }
 
 .mobileToggle {
+  --toggle-bg: #3e2723;
+  
   display: none;
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 110;
-  background: #3e2723;
+  background: var(--toggle-bg);
   color: white;
   border: none;
   border-radius: 4px;
@@ -88,7 +99,7 @@
 .overlay {
   display: none;
   @media (max-width: 768px) {
-    .menuOpen & {
+    :global(.menuOpen) & {
       display: block;
       position: fixed;
       inset: 0;

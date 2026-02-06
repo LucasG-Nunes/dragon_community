@@ -1,8 +1,21 @@
+/* Variables Scope */
+$modal-backdrop: rgba(0, 0, 0, 0.6);
+$modal-bg: #ffffff;
+$modal-border: #edf2f7;
+$modal-text-title: #2d3748;
+$modal-close-color: #a0aec0;
+$modal-close-hover: #e53e3e;
+$modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$modal-blur: 4px;
+
 .backdrop {
+  --backdrop-color: #{$modal-backdrop};
+  --blur-amount: #{$modal-blur};
+  
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  background-color: var(--backdrop-color);
+  backdrop-filter: blur(var(--blur-amount));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +23,15 @@
 }
 
 .content {
-  background: white;
+  --content-bg: #{$modal-bg};
+  --content-shadow: #{$modal-shadow};
+  
+  background: var(--content-bg);
   border-radius: 12px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: fadeIn 0.3s ease-out;
+  box-shadow: var(--content-shadow);
+  animation: modalFadeIn 0.3s ease-out;
 }
 
 .header {
@@ -23,9 +39,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #edf2f7;
+  border-bottom: 1px solid $modal-border;
 
-  h3 { margin: 0; color: #2d3748; }
+  h3 { 
+    margin: 0; 
+    color: $modal-text-title; 
+  }
 }
 
 .closeBtn {
@@ -33,13 +52,25 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #a0aec0;
-  &:hover { color: #e53e3e; }
+  color: $modal-close-color;
+  transition: color 0.2s ease;
+
+  &:hover { 
+    color: $modal-close-hover; 
+  }
 }
 
-.body { padding: 1.5rem; }
+.body { 
+  padding: 1.5rem; 
+}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes modalFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }

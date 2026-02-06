@@ -1,5 +1,19 @@
+/* Variables Scope */
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$error-gradient: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+$error-color: #dc2626;
+$text-main: #1f2937;
+$placeholder-color: #9ca3af;
+$border-radius-input: 0.75rem;
+$shadow-focus: 0 0 0 4px rgba(102, 126, 234, 0.1);
+$shadow-error-soft: 0 2px 4px rgba(220, 38, 38, 0.1);
 
 .field {
+  --gradient-main: #{$primary-gradient};
+  --gradient-error: #{$error-gradient};
+  --color-error: #{$error-color};
+  --shadow-focus: #{$shadow-focus};
+  
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -9,14 +23,14 @@
 .label {
   font-size: 0.875rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-main);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition: all 0.3s;
 
   &:has(+ .inputError) {
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    background: var(--gradient-error);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -28,10 +42,10 @@
   width: auto;
   padding: 0.875rem 1.25rem;
   font-size: 1rem;
-  color: #1f2937;
+  color: $text-main;
   background: #ffffff;
   border: 2px solid transparent;
-  border-radius: 0.75rem;
+  border-radius: $border-radius-input;
   background-clip: padding-box;
   transition: all 0.3s ease;
   outline: none;
@@ -39,42 +53,28 @@
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     z-index: -1;
     margin: -2px;
     border-radius: inherit;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-main);
     opacity: 0.3;
     transition: opacity 0.3s;
   }
 
-  &::placeholder {
-    color: #9ca3af;
-  }
-
-  &:hover::before {
-    opacity: 0.6;
-  }
+  &::placeholder { color: $placeholder-color; }
+  &:hover::before { opacity: 0.6; }
 
   &:focus {
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-    
-    &::before {
-      opacity: 1;
-    }
+    box-shadow: var(--shadow-focus);
+    &::before { opacity: 1; }
   }
 
   &:disabled {
     background-color: #f9fafb;
     cursor: not-allowed;
     opacity: 0.6;
-    
-    &::before {
-      opacity: 0.2;
-    }
+    &::before { opacity: 0.2; }
   }
 }
 
@@ -87,11 +87,9 @@
     position: absolute;
     inset: 0;
     padding: 2px;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
+    border-radius: $border-radius-input;
+    background: var(--gradient-main);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0.3;
@@ -99,38 +97,30 @@
     pointer-events: none;
   }
   
-  &:has(.input:hover)::before {
-    opacity: 0.6;
-  }
-  
-  &:has(.input:focus)::before {
-    opacity: 1;
-  }
-  
+  &:has(.input:hover)::before { opacity: 0.6; }
+  &:has(.input:focus)::before { opacity: 1; }
   &:has(.inputError)::before {
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    background: var(--gradient-error);
     opacity: 1;
   }
 }
 
-
 .error {
+  --error-shadow: #{$shadow-error-soft};
   font-size: 0.875rem;
-  color: #dc2626;
+  color: var(--color-error);
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.375rem;
   padding: 0.625rem 0.875rem;
   background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(153, 27, 27, 0.05) 100%);
-  border-left: 3px solid #dc2626;
+  border-left: 3px solid var(--color-error);
   border-radius: 0.5rem;
+  box-shadow: var(--error-shadow);
   animation: slideInRight 0.3s ease-out;
 
-  &::before {
-    content: '⚠️';
-    font-size: 0.875rem;
-  }
+  &::before { content: '⚠️'; }
 }
 
 .helperText {
@@ -140,12 +130,6 @@
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(0.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(0.5rem); }
+  to { opacity: 1; transform: translateX(0); }
 }

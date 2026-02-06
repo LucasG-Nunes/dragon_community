@@ -1,26 +1,50 @@
+/* Variables Scope */
+$item-bg: #fdf5e6;
+$item-bg-hover: #fffaf0;
+$item-border: #d2b48c;
+$item-border-hover: #d4af37;
+$text-primary: #2b1b12;
+$text-secondary: #744210;
+$danger-bg: #fee2e2;
+$info-bg: #e0e7ff;
+$shadow-standard: 2px 2px 5px rgba(0, 0, 0, 0.1);
+$shadow-hover: 4px 4px 10px rgba(0, 0, 0, 0.15);
+
 .item {
-  background: #fdf5e6; 
-  border: 1px solid #d2b48c;
+  --bg-color: #{$item-bg};
+  --border-color: #{$item-border};
+  --item-shadow: #{$shadow-standard};
+  --item-shadow-hover: #{$shadow-hover};
+  
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   margin-bottom: 0.75rem;
   border-radius: 4px;
   padding: 1.25rem;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  box-shadow: var(--item-shadow);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
 
-&:hover {
-    background-color: #fffaf0; 
-    transform: scale(1.01); 
-    border-color: #d4af37; 
+  &:hover {
+    background-color: $item-bg-hover;
+    transform: scale(1.01);
+    border-color: $item-border-hover;
+    box-shadow: var(--item-shadow-hover);
   }
 
-  strong { color: #2b1b12; font-size: 1.1rem; }
-  span { color: #744210; font-style: italic; font-weight: 500; }
+  strong { 
+    color: $text-primary; 
+    font-size: 1.1rem; 
+  }
+  
+  span { 
+    color: $text-secondary; 
+    font-style: italic; 
+    font-weight: 500; 
+  }
 }
 
 .info {
@@ -52,9 +76,9 @@
 }
 
 .deleteBtn:hover {
-  background-color: #fee2e2;
+  background-color: $danger-bg;
 }
 
 .editBtn:hover {
-  background-color: #e0e7ff; 
+  background-color: $info-bg; 
 }
