@@ -1,0 +1,279 @@
+
+//////
+/// 
+/// 
+/// // 🍺 Dragon Community - Tavern Theme
+// Paleta de cores inspirada em tavernas medievais
+
+// === CORES PRINCIPAIS ===
+// Tons de Madeira
+$wood-dark: #3e2723;      // Madeira escura
+$wood-medium: #5d4037;    // Madeira média
+$wood-light: #6d4c41;     // Madeira clara
+$wood-lighter: #8d6e63;   // Madeira mais clara
+
+// Tons de Couro/Pergaminho
+$leather-dark: #4e342e;   // Couro escuro
+$parchment: #d7ccc8;      // Pergaminho
+$parchment-light: #efebe9;
+
+// Tons de Metal/Ferro
+$iron: #455a64;
+$bronze: #795548;
+$gold: #ffd54f;
+
+// Fogo/Laranja (para acentos)
+$fire-orange: #ff6f00;
+$fire-red: #d84315;
+$ember: #bf360c;
+
+// Tons neutros
+$stone-dark: #263238;
+$stone-light: #546e7a;
+$smoke: rgba(0, 0, 0, 0.6);
+
+// === GRADIENTES ===
+$gradient-tavern: linear-gradient(135deg, #3e2723 0%, #5d4037 50%, #4e342e 100%);
+$gradient-wood: linear-gradient(135deg, #5d4037 0%, #6d4c41 100%);
+$gradient-fire: linear-gradient(135deg, #ff6f00 0%, #d84315 100%);
+$gradient-bronze: linear-gradient(135deg, #795548 0%, #5d4037 100%);
+
+// === SEMANTIC COLORS ===
+$primary-color: $fire-orange;
+$secondary-color: $bronze;
+$success-color: #4caf50;
+$error-color: #f44336;
+$warning-color: $gold;
+$info-color: $stone-light;
+
+// === TEXT COLORS ===
+$text-primary: #ffffff;
+$text-secondary: $parchment;
+$text-muted: $parchment-light;
+$text-dark: $wood-dark;
+
+// === BACKGROUNDS ===
+$bg-tavern: $gradient-tavern;
+$bg-card: rgba(62, 39, 35, 0.9);
+$bg-card-light: rgba(93, 64, 55, 0.8);
+$bg-overlay: $smoke;
+
+// === BORDERS ===
+$border-color: rgba(215, 204, 200, 0.3);
+$border-color-light: rgba(215, 204, 200, 0.1);
+$border-color-gold: rgba(255, 213, 79, 0.5);
+
+// === SHADOWS ===
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+$shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+$shadow-fire: 0 4px 20px rgba(255, 111, 0, 0.4);
+$shadow-gold: 0 4px 20px rgba(255, 213, 79, 0.3);
+
+// === SPACING ===
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 0.75rem;
+$spacing-lg: 1rem;
+$spacing-xl: 1.5rem;
+$spacing-2xl: 2rem;
+$spacing-3xl: 3rem;
+
+// === BORDER RADIUS ===
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 0.75rem;
+$radius-xl: 1rem;
+
+// === TRANSITIONS ===
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// === TYPOGRAPHY ===
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-family-display: 'Cinzel', serif; // Fonte medieval (opcional)
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// === Z-INDEX ===
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  background: $gradient-tavern;
+  position: relative;
+  overflow-x: hidden;
+
+  // Textura de madeira sutil (opcional)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  // Efeito de fumaça/névoa
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+    pointer-events: none;
+  }
+}
+
+.minimalHeader {
+  position: relative;
+  padding: $spacing-xl $spacing-2xl;
+  color: $text-primary;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-xl;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(62, 39, 35, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid $border-color;
+  z-index: 10;
+
+  // Barra decorativa dourada
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: $gradient-fire;
+    box-shadow: $shadow-fire;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    .icon {
+      font-size: $font-size-2xl;
+      filter: drop-shadow(0 2px 4px rgba(255, 111, 0, 0.5));
+    }
+  }
+}
+
+.centerContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-2xl;
+  position: relative;
+  z-index: 1;
+
+  // Container do formulário
+  .formCard {
+    width: 100%;
+    max-width: 450px;
+    padding: $spacing-3xl;
+    background: $bg-card;
+    backdrop-filter: blur(10px);
+    border-radius: $radius-xl;
+    border: 2px solid $border-color;
+    box-shadow: $shadow-xl;
+    position: relative;
+    overflow: hidden;
+
+    // Brilho dourado sutil nas bordas
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: $radius-xl;
+      padding: 2px;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        $gold 50%,
+        transparent 100%
+      );
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.3;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    // Detalhes decorativos nos cantos
+    &::after {
+      content: '';
+      position: absolute;
+      top: $spacing-lg;
+      right: $spacing-lg;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, $fire-orange, transparent);
+      border-radius: 50%;
+      opacity: 0.2;
+      filter: blur(20px);
+    }
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .minimalHeader {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  .centerContent {
+    padding: $spacing-lg;
+
+    .formCard {
+      padding: $spacing-2xl;
+    }
+  }
+}

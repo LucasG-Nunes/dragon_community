@@ -1,28 +1,53 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import DragonCreate from "../../presentation/pages/DragonCreate/DragonCreate";
-import DragonDetail from "../../presentation/pages/DragonDetail/DragonDetail";
+import { DragonCreatePage } from "../../presentation/pages/DragonCreatePage/DragonCreatePage";
+import { DragonDetailPage } from "../../presentation/pages/DragonDetailPage/DragonDetailPage";
 import { DragonListPage } from "../../presentation/pages/DragonListPage/DragonListPage";
-import Login from "../../presentation/pages/Login/Login";
+import { LoginPage } from "../../presentation/pages/LoginPage/LoginPage";
 import { NotFound } from "../../presentation/pages/NotFound/NotFound";
+import { PrivateRoute } from "./guards/PrivateRoute";
+import { PublicRoute } from "./guards/PublicRoute";
 
 export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rota de Login */}
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
 
-        {/* Listagem de Dragões */}
-        <Route path="/dragons" element={<DragonListPage />} />
+        <Route
+          path="/dragons"
+          element={
+            <PrivateRoute>
+              <DragonListPage />
+            </PrivateRoute>
+          }
+        />
 
-        {/* Criação de Dragão */}
-        <Route path="/create-dragon" element={<DragonCreate />} />
+        <Route
+          path="/create-dragon"
+          element={
+            <PrivateRoute>
+              <DragonCreatePage />
+            </PrivateRoute>
+          }
+        />
 
-        {/* Detalhe do Dragão (useParams usará o 'id') */}
-        <Route path="/dragon/:id" element={<DragonDetail />} />
+        <Route
+          path="/dragon/:id"
+          element={
+            <PrivateRoute>
+              <DragonDetailPage />
+            </PrivateRoute>
+          }
+        />
 
-        {/* Rota de Erro 404 - Sempre a última do array */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
