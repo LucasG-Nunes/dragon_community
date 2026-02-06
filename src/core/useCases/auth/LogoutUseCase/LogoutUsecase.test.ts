@@ -146,11 +146,12 @@ describe("LogoutUseCase", () => {
       await expect(logoutUseCase.execute()).resolves.toBeUndefined();
     });
 
-    it("deve lidar com authService undefined (má configuração)", () => {
+    it("deve lidar com authService undefined (má configuração)", async () => {
       // @ts-expect-error: Testando comportamento com configuração inválida
       const invalidLogoutUseCase = new LogoutUseCase(undefined);
 
-      expect(async () => {
+      // 💡 Adicionado 'await' antes do expect para resolver o aviso do Vitest
+      await expect(async () => {
         await invalidLogoutUseCase.execute();
       }).rejects.toThrow();
     });

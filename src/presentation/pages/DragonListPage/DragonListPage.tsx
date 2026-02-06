@@ -1,17 +1,21 @@
 import { Suspense } from "react";
 
+import { Loader } from "../../components/atoms/Loader/Loader";
 import { DragonCollection } from "../../components/organisms/DragonCollection/DragonCollection";
+import { Header } from "../../components/organisms/Header/Header";
+import { Sidebar } from "../../components/organisms/Sidebar/Sidebar";
+import { MainLayoutTemplate } from "../../components/templates/MainLayoutTemplate/MainLayoutTemplate";
 
 export const DragonListPage = () => {
   return (
-    <main>
-      <h1>Comunidade de Dragões</h1>
-
-      {/* O fallback pode ser um Átomo de Spinner ou Skeleton */}
-      {/* Decidir como vou controlar o skeleton */}
-      <Suspense fallback={<span>Invocando dragões... 🔥</span>}>
+    <MainLayoutTemplate
+      header={<Header title="📜 Registro de Criaturas" />}
+      sidebar={<Sidebar />}
+    >
+      <h2>Dragon Collection</h2>
+      <Suspense fallback={<Loader message="Invocando Dragões" />}>
         <DragonCollection />
       </Suspense>
-    </main>
+    </MainLayoutTemplate>
   );
 };

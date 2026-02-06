@@ -1,0 +1,75 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle, #0f0f12 0%, #050506 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 1;
+  transition: opacity 1s ease-in-out, visibility 1s;
+  visibility: visible;
+}
+
+
+.fadeOut {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:25rem;
+
+  img{
+    margin-left: -12rem;
+  }
+}
+
+.gatewayIcon {
+  width: 140px;
+  height: 140px;
+  
+.pulse {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+}
+
+.message {
+  color: #a78bfa;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin: 0;
+  animation: fadeInText 1s ease-out forwards;
+}
+
+.dots {
+  color: #6366f1;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  display: block;
+}
+
+@keyframes pulseGlow {
+  0% { 
+    transform: scale(0.98);
+  }
+  50% { 
+    transform: scale(1.05);
+  }
+  100% { 
+    transform: scale(0.98);
+  }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
