@@ -1,7 +1,8 @@
 import type { Dragon } from "../../entities/Dragon";
+import type { IGetDragonsUseCase } from "../../ports/in/IGetDragonUseCase";
 import type { IDragonService } from "../../ports/out/IDragonService";
 
-export class GetDragonsUseCase {
+export class GetDragonsUseCase implements IGetDragonsUseCase {
   private dragonService: IDragonService;
 
   constructor(dragonService: IDragonService) {
